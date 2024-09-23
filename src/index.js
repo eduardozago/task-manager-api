@@ -1,14 +1,21 @@
 import http from 'node:http'
 import { json } from './middlewares/json.js'
+import { routes } from './routes.js'
 
 const server = http.createServer(async (request, response) => {
+    const { method, url} = request
 
     await json(request, response)
      
-    if(request.url === '/tasks/new' && request.method === 'POST') {
-        console.log(request.body)
-    }
+    const route = routes.find(route => {
+        return route.method === method && route.path === url
+    })
 
-    return response.end('listening...')
+    if(route) {
+
+        return route.handler(request, response)
+    }
+    
+    return response.writeHead(404).end()
 })
 server.listen(3000)
