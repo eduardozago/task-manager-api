@@ -2,6 +2,7 @@
 
 ## Table of Contents
 - [Overview](#overview)
+    - [Features](#features)
     - [Requirements](#requirements)
     - [Usage](#run-server)
 - [Server](#server)
@@ -15,6 +16,13 @@
 ## Overview
 
 This Node.js API manage tasks in a database.
+
+### Features
+- Create a task
+- List all task
+- Update task by `id`
+- Delete task by `id`
+- Mark a task as complete by `id`
 
 ### Requirements
 For this project, the following (essential for execution) resources were used:
@@ -42,7 +50,41 @@ If a route exists in [Routes](src/routes.js), the [Server](src/server.js) will c
 
 ### Endpoints
 
+- **POST** - /tasks:
+- **GET** - /tasks:
+- **PUT** - /tasks/:id:
+- **PATCH** - /tasks/:id/complete:
+- **DELETE** - /tasks/:id: 
+
 ## Database
+
+The database for this project stores in a JSON file (src/db.json), and [src/middlewares/database.js](src/middlewares/database.js) implements database operations. Every task in this project is composed of the following attributes: 
+
+- `id`: task identifier
+- `title`: task title 
+- `description`: detailed task description
+- `completed_at`: 
+- `created_at`: 
+- `updated_at`:
+
+Databases are stored in JSON format, with each item representing a table and each table representing an array of logs.
+
+Example:
+
+```
+{
+    "table": [
+        {
+            "id": "task id",
+            "title": "task title",
+            "description": "description task",
+            "completed_at": ,
+            "created_at": ,
+            "updated_at":
+        }
+    ]
+}
+```
 
 ## Middlewares
 

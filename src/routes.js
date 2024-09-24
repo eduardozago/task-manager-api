@@ -1,20 +1,60 @@
+import { randomUUID } from 'node:crypto'
+import { Database } from './middlewares/database.js'
+
+const database = new Database
+
 export const routes = [
     {
         method: 'GET',
         path: '/tasks',
         handler: (request, response) => {
-            console.log('get tasks')
+            const tasks = database.select('tasks')
         
-            return response.writeHead(200).end()
+            return response.end(JSON.stringify(tasks))
         }
     },
     {
         method: 'POST',
         path: '/tasks',
         handler: (request, response) => {
-            console.log(request.body)
-        
+            const { title, description } = request.body
+            
+            const task = ({
+                id: randomUUID(),
+                title: title,
+                description: description,
+                completed_at: null,
+                created_at: new Date().toISOString(),
+                updated_at: null
+            })
+
+            database.insert('tasks', task)
+
             return response.writeHead(201).end()
+        }
+    },
+    {
+        method: 'PUT',
+        path: '/tasks/:id',
+        handler: (request, response) => {
+        
+            return response.writeHead(204).end()
+        }
+    },
+    {
+        method: 'PATCH',
+        path: '/tasks/:id/complete',
+        handler: (request, response) => {
+        
+            return response.writeHead(204).end()
+        }
+    },
+    {
+        method: 'DELETE',
+        path: '/tasks/:id',
+        handler: (request, response) => {
+        
+            return response.writeHead(204).end()
         }
     },
 ]
