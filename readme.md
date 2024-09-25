@@ -40,7 +40,7 @@ npm run dev
 
 ## Routes
 
-Routes are found in [src/routes.js] and return an array with all routes. Each item being an object that has route parameters:
+Routes are found in [src/routes.js](src/routes.js) and return an array with all routes. Each item being an object that has route parameters:
 
 - **Method**: request method
 - **Path**: endpoint
@@ -50,8 +50,8 @@ If a route exists in [Routes](src/routes.js), the [Server](src/server.js) will c
 
 ### Endpoints
 
-- **POST** - /tasks:
-- **GET** - /tasks:
+- **POST** - /tasks: **Create** a new task
+- **GET** - /tasks: **Select all** tasks
 - **PUT** - /tasks/:id:
 - **PATCH** - /tasks/:id/complete:
 - **DELETE** - /tasks/:id: 
@@ -96,3 +96,8 @@ The creation of JSON middleware takes place in [src/middlewares/json.js](src/mid
 - **Response**: Set up the request responses in JSON format. 
 
 ## Utils
+
+### Build route path
+
+Finding the parameters route using RegEx, returning arguments from URL groups if there are any route parameters. The parameters are obtained by the server, which then verifies and stores them on `request.params` if they are valid.
+
