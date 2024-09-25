@@ -41,12 +41,10 @@ export const routes = [
             const { id } = request.params
             const { title, description } = request.body
 
-            const updated_at = new Date().toISOString()
-
             database.update('tasks', id, {
                 title,
                 description,
-                updated_at
+                updated_at: new Date().toISOString()
             })
         
             return response.writeHead(204).end()
@@ -56,7 +54,12 @@ export const routes = [
         method: 'PATCH',
         path: buildRoutePath('/tasks/:id/complete'),
         handler: (request, response) => {
-        
+            const { id } = request.params
+
+            database.update('tasks', id, {
+                completed_at: new Date().toISOString(),
+            })
+
             return response.writeHead(204).end()
         }
     },

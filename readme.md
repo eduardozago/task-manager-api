@@ -5,7 +5,6 @@
     - [Features](#features)
     - [Requirements](#requirements)
     - [Usage](#run-server)
-- [Server](#server)
 - [Routes](#routes)
     - [Endpoints](#endpoints)
 - [Database](#database)
@@ -36,9 +35,6 @@ To run server:
 npm run dev
 ```
 
-## Server
-
-
 ## Routes
 
 Routes are found in [src/routes.js](src/routes.js) and return an array with all routes. Each item being an object that has route parameters:
@@ -51,22 +47,24 @@ If a route exists in [Routes](src/routes.js), the [Server](src/server.js) will c
 
 ### Endpoints
 
-- **POST** - /tasks: **Create** a new task
-- **GET** - /tasks: **Select all** tasks
-- **PUT** - /tasks/:id:
-- **PATCH** - /tasks/:id/complete:
-- **DELETE** - /tasks/:id: 
+- **GET** - `/tasks`: **Select all** tasks.
+- **POST** - `/tasks`: **Create** a new task.
+    - The request body contains JSON formatted data.
+- **PUT** - `/tasks/:id`: **Update** task by id.
+    - The request body contains JSON formatted data.
+- **PATCH** - `/tasks/:id/complete`: Mark a task as complete by id.
+- **DELETE** - `/tasks/:id`: **Delete** task by id.
 
 ## Database
 
 The database for this project stores in a JSON file (src/db.json), and [src/middlewares/database.js](src/middlewares/database.js) implements database operations. Every task in this project is composed of the following attributes: 
 
-- `id`: task identifier
-- `title`: task title 
-- `description`: detailed task description
-- `completed_at`: 
-- `created_at`: 
-- `updated_at`:
+- `id`: Task identifier.
+- `title`: Task title.
+- `description`: Task description.
+- `completed_at`: Task completion date.
+- `created_at`: Creation date.
+- `updated_at`: Update date.
 
 Databases are stored in JSON format, with each item representing a table and each table representing an array of logs.
 
@@ -76,12 +74,12 @@ Example:
 {
     "table": [
         {
-            "id": "task id",
-            "title": "task title",
-            "description": "description task",
-            "completed_at": ,
-            "created_at": ,
-            "updated_at":
+            "id": "bef65061-0776-4680-a3a3-e4c437dfacae",
+            "title": "Test title",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ac mi consequat, consequat metus sit amet, aliquam massa.",
+            "completed_at": "2024-09-25T15:18:21.831Z",
+            "created_at": "2024-09-24T20:20:25.577Z",
+            "updated_at": null
         }
     ]
 }
