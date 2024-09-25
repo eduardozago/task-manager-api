@@ -16,7 +16,7 @@ export const routes = [
     },
     {
         method: 'POST',
-        path: '/tasks',
+        path: buildRoutePath('/tasks'),
         handler: (request, response) => {
             const { title, description } = request.body
             
@@ -38,15 +38,23 @@ export const routes = [
         method: 'PUT',
         path: buildRoutePath('/tasks/:id'),
         handler: (request, response) => {
+            const { id } = request.params
+            const { title, description } = request.body
 
-            console.log(request.params)
+            const updated_at = new Date().toISOString()
+
+            database.update('tasks', id, {
+                title,
+                description,
+                updated_at
+            })
         
             return response.writeHead(204).end()
         }
     },
     {
         method: 'PATCH',
-        path: '/tasks/:id/complete',
+        path: buildRoutePath('/tasks/:id/complete'),
         handler: (request, response) => {
         
             return response.writeHead(204).end()
@@ -54,8 +62,11 @@ export const routes = [
     },
     {
         method: 'DELETE',
-        path: '/tasks/:id',
+        path: buildRoutePath('/tasks/:id'),
         handler: (request, response) => {
+            const { id } = request.params
+
+            database.delete('tasks', id)
         
             return response.writeHead(204).end()
         }

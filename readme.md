@@ -12,6 +12,7 @@
 - [Middlewares](#middlewares)
     - [JSON](#json)
 - [Utils](#utils)
+    - [Build route path](#build-route-path)
 
 ## Overview
 
