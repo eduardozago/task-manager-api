@@ -12,6 +12,7 @@
     - [JSON](#json)
 - [Utils](#utils)
     - [Build route path](#build-route-path)
+    - [CSV import](#csv-import)
 
 ## Overview
 
@@ -19,14 +20,16 @@ This Node.js API manage tasks in a database.
 
 ### Features
 - Create a task
-- List all task
+- List all tasks
 - Update task by `id`
 - Delete task by `id`
 - Mark a task as complete by `id`
+- Tasks import from a CSV file
 
 ### Requirements
 For this project, the following (essential for execution) resources were used:
  - [Node.js](https://nodejs.org/)
+ - [csv-parse](https://csv.js.org/parse/)
 
 ### Run server
 
@@ -99,4 +102,9 @@ The creation of JSON middleware takes place in [src/middlewares/json.js](src/mid
 ### Build route path
 
 Finding the parameters route using RegEx, returning arguments from URL groups if there are any route parameters. The parameters are obtained by the server, which then verifies and stores them on `request.params` if they are valid.
+
+### CSV import
+
+This utility uses streams and the `csv-parse` dependency to import tasks from a CSV file.
+
 
