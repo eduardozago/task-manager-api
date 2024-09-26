@@ -10,9 +10,9 @@
 - [Database](#database)
 - [Middlewares](#middlewares)
     - [JSON](#json)
+    - [CSV](#csv)
 - [Utils](#utils)
     - [Build route path](#build-route-path)
-    - [CSV import](#csv-import)
 
 ## Overview
 
@@ -95,16 +95,23 @@ Example:
 The creation of JSON middleware takes place in [src/middlewares/json.js](src/middlewares/json.js), where `request` and `response` are received and modified appropriately.
 
 - **Request**: Get the data given in the request body to set `request.body`.  
-- **Response**: Set up the request responses in JSON format. 
+- **Response**: Set up the request responses in JSON format.
+
+### CSV
+This middleware uses streams and the `csv-parse` dependency to import tasks from a CSV file. In order to read CSV, you must store `task.csv` in the format shown below in [csv/tasks.csv](csv/tasks.csv):
+
+| TITLE     | DESCRIPTION         |
+|-----------| :-----------------: |
+| Task 01   | Description task 01 | 
+| Task 02   | Description task 02 |
+| Task 03   | Description task 03 |
+
+There will be a `POST` request to create a task sent for every CSV record. A `GET` request to the `/tasks` endpoint will cause the CSV file to be imported.
 
 ## Utils
 
 ### Build route path
 
 Finding the parameters route using RegEx, returning arguments from URL groups if there are any route parameters. The parameters are obtained by the server, which then verifies and stores them on `request.params` if they are valid.
-
-### CSV import
-
-This utility uses streams and the `csv-parse` dependency to import tasks from a CSV file.
 
 
