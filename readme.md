@@ -16,7 +16,7 @@
 
 ## Overview
 
-
+A Node.js implemented API for managing tasks with a local database. Furthermore, tasks saved in CSV files can be imported using this API.
 
 ### Features
 - Create a task
