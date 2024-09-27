@@ -1,10 +1,11 @@
 # Task Manager API - Node.js
 
 ## Table of Contents
+
 - [Overview](#overview)
     - [Features](#features)
     - [Requirements](#requirements)
-    - [Usage](#run-server)
+    - [Usage](#usage)
 - [Routes](#routes)
     - [Endpoints](#endpoints)
 - [Database](#database)
@@ -19,6 +20,7 @@
 A Node.js implemented API for managing tasks with a local database. Furthermore, tasks saved in CSV files can be imported using this API.
 
 ### Features
+
 - Create a task
 - List all tasks
 - Update task by `id`
@@ -27,13 +29,20 @@ A Node.js implemented API for managing tasks with a local database. Furthermore,
 - Tasks import from a CSV file
 
 ### Requirements
+
 For this project, the following (essential for execution) resources were used:
  - [Node.js](https://nodejs.org/)
  - [csv-parse](https://csv.js.org/parse/)
 
-### Run server
+### Usage
 
-To run server:
+First, install the dependencies
+
+```
+npm install
+```
+And then run server:
+
 ```
 npm run dev
 ```
@@ -98,6 +107,7 @@ The creation of JSON middleware takes place in [src/middlewares/json.js](src/mid
 - **Response**: Set up the request responses in JSON format.
 
 ### CSV
+
 This middleware uses streams and the `csv-parse` dependency to import tasks from a CSV file. In order to read CSV, you must store `task.csv` in the format shown below in [csv/tasks.csv](csv/tasks.csv):
 
 | TITLE     | DESCRIPTION         |
