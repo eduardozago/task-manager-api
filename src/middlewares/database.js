@@ -28,8 +28,14 @@ export class Database {
     }
 
     insert(table, data) {
+
+        
         if (Array.isArray(this.#database[table])) {
-            this.#database[table].push(data)
+            const rowIndex = this.#database[table].findIndex(row => row.id == data.id)
+
+            if (rowIndex === -1) {
+                this.#database[table].push(data)
+            }
         } else {
             this.#database[table] = [data]
         }

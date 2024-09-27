@@ -16,7 +16,7 @@
 
 ## Overview
 
-This Node.js API manage tasks in a database.
+
 
 ### Features
 - Create a task

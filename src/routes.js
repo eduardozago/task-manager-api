@@ -18,36 +18,45 @@ export const routes = [
         method: 'POST',
         path: buildRoutePath('/tasks'),
         handler: (request, response) => {
-            const { title, description } = request.body
-            
-            const task = ({
-                id: randomUUID(),
-                title: title,
-                description: description,
-                completed_at: null,
-                created_at: new Date().toISOString(),
-                updated_at: null
-            })
+            if (request.body != null) {
+                const { title, description } = request.body
 
-            database.insert('tasks', task)
-
-            return response.writeHead(201).end()
+                const task = ({
+                    id: randomUUID(),
+                    title: title,
+                    description: description,
+                    completed_at: null,
+                    created_at: new Date().toISOString(),
+                    updated_at: null
+                })
+    
+                database.insert('tasks', task)
+    
+                return response.writeHead(201).end()
+            } else {
+                return response.writeHead(400).end()
+            }
         }
     },
     {
         method: 'PUT',
         path: buildRoutePath('/tasks/:id'),
         handler: (request, response) => {
-            const { id } = request.params
-            const { title, description } = request.body
+            if (request.body != null) { 
 
-            database.update('tasks', id, {
-                title,
-                description,
-                updated_at: new Date().toISOString()
-            })
-        
-            return response.writeHead(204).end()
+                const { id } = request.params
+                const { title, description } = request.body
+
+                database.update('tasks', id, {
+                    title,
+                    description,
+                    updated_at: new Date().toISOString()
+                })
+            
+                return response.writeHead(204).end()
+            } else {
+                return response.writeHead(400).end()
+            }
         }
     },
     {
