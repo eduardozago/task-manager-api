@@ -55,7 +55,9 @@ export class Database {
                 id
             }
             this.#persist()
-        }
+        } 
+
+        return rowIndex
     }
 
     delete(table, id) {
@@ -65,5 +67,7 @@ export class Database {
             this.#database[table].splice(rowIndex, 1)
             this.#persist()
         }
+
+        return rowIndex
     }
 }

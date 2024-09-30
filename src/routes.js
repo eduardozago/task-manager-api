@@ -47,11 +47,15 @@ export const routes = [
                 const { id } = request.params
                 const { title, description } = request.body
 
-                database.update('tasks', id, {
+                const index = database.update('tasks', id, {
                     title,
                     description,
                     updated_at: new Date().toISOString()
                 })
+
+                if (index === -1) {
+                    return response.writeHead(400).end('ID was not found.')
+                }
             
                 return response.writeHead(204).end()
             } else {
@@ -78,7 +82,11 @@ export const routes = [
         handler: (request, response) => {
             const { id } = request.params
 
-            database.delete('tasks', id)
+            const index = database.delete('tasks', id)
+
+            if (index === -1) {
+                return response.writeHead(400).end('ID was not found.')
+            }
         
             return response.writeHead(204).end()
         }
