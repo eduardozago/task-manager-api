@@ -47,6 +47,8 @@ And then run server:
 npm run dev
 ```
 
+The server will run on port `3000`.
+
 ## Routes
 
 Routes are found in [src/routes.js](src/routes.js) and return an array with all routes. Each item being an object that has route parameters:
